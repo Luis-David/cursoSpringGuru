@@ -1,29 +1,18 @@
 package mx.com.xhani.springweb.modelo;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Libro {
+public class Editorial {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nombre;
-	@OneToOne
-	private Editorial editorial;
-	@ManyToMany
-	@JoinTable(name="autor_libro",joinColumns = @JoinColumn(name= "libro_id"),
-	inverseJoinColumns = @JoinColumn(name = "autor_id"))
-	private Set<Autor> autores= new HashSet<Autor>();
+	private String direccion;
 	public Long getId() {
 		return id;
 	}
@@ -36,19 +25,13 @@ public class Libro {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Set<Autor> getAutores() {
-		return autores;
+	public String getDireccion() {
+		return direccion;
 	}
-	public void setAutores(Set<Autor> autores) {
-		this.autores = autores;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	
-	public Editorial getEditorial() {
-		return editorial;
-	}
-	public void setEditorial(Editorial editorial) {
-		this.editorial = editorial;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,7 +47,7 @@ public class Libro {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Libro other = (Libro) obj;
+		Editorial other = (Editorial) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -74,7 +57,7 @@ public class Libro {
 	}
 	@Override
 	public String toString() {
-		return "Libro [id=" + id + ", nombre=" + nombre + ", autores=" + autores + "]";
+		return "Editorial [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
 	
 }
