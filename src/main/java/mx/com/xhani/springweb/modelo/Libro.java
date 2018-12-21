@@ -1,21 +1,26 @@
-package mx.com.xhani.modelo;
+package mx.com.xhani.springweb.modelo;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
 @Entity
-public class Autor {
+public class Libro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nombre;
-	private String apellidos;
-	@ManyToMany(mappedBy = "autores")
-	private Set<Libro> libros;
+	@ManyToMany
+	@JoinTable(name="autor_libro",joinColumns = @JoinColumn(name= "libro_id"),
+	inverseJoinColumns = @JoinColumn(name = "autor_id"))
+	private Set<Autor> autores= new HashSet<Autor>();
 	public Long getId() {
 		return id;
 	}
@@ -28,17 +33,11 @@ public class Autor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApellidos() {
-		return apellidos;
+	public Set<Autor> getAutores() {
+		return autores;
 	}
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-	public Set<Libro> getLibros() {
-		return libros;
-	}
-	public void setLibros(Set<Libro> libros) {
-		this.libros = libros;
+	public void setAutores(Set<Autor> autores) {
+		this.autores = autores;
 	}
 	@Override
 	public int hashCode() {
@@ -55,7 +54,7 @@ public class Autor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Autor other = (Autor) obj;
+		Libro other = (Libro) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -65,7 +64,7 @@ public class Autor {
 	}
 	@Override
 	public String toString() {
-		return "Autor [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", libros=" + libros + "]";
+		return "Libro [id=" + id + ", nombre=" + nombre + ", autores=" + autores + "]";
 	}
 	
 }
