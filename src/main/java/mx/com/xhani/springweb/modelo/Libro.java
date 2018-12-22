@@ -17,7 +17,7 @@ public class Libro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nombre;
+	private String titulo;
 	@OneToOne
 	private Editorial editorial;
 	@ManyToMany
@@ -30,11 +30,11 @@ public class Libro {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getTitulo() {
+		return titulo;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTitulo(String nombre) {
+		this.titulo = nombre;
 	}
 	public Set<Autor> getAutores() {
 		return autores;
@@ -74,7 +74,7 @@ public class Libro {
 	}
 	@Override
 	public String toString() {
-		return "Libro [id=" + id + ", nombre=" + nombre + ", autores=" + autores + "]";
+		return "Libro [id=" + id + ", nombre=" + titulo + ", autores=" + autores + "]";
 	}
 	
 }

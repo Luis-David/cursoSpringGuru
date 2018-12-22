@@ -34,7 +34,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 		editorial.setNombre("Porrua");
 		editorial.setDireccion("CDMx");
 		editorialRepository.save(editorial);
-		l.setNombre("Domain Driven Design");
+		l.setTitulo("Domain Driven Design");
 		a.getLibros().add(l);
 		l.setEditorial(editorial);
 		libroRepository.save(l);

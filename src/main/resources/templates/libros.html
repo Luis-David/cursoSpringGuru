@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymelaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Spring</title>
+</head>
+<body>
+	<h1>Lista de libros</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Titulo2</th>
+			<th>Editoria</th>
+		</tr>
+		<tr th:each="libro: ${libros}">
+			<td th:text="${libro.id}">123</td>
+			<td th:text="${libro.titulo}">Algo</td>
+			<td th:text="${libro.editorial.nombre}"></td>
+		</tr>
+	</table>
+</body>
+</html>
